@@ -1,0 +1,41 @@
+{
+  "name": "only-configuration",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/shedyhs/only-configuration.git",
+  "author": "",
+  "license": "MIT",
+  "scripts": {
+    "build": "rimraf dist && tsc -p tsconfig.build.json",
+    "start": "NODE_ENV=production node dist/index.js",
+    "dev": "ts-node-dev --respawn --ignore-watch node_modules --transpile-only src/index.ts",
+    "test": "jest --no-cache --runInBand --detectOpenHandles --coverage",
+    "prepare": "husky install"
+  },
+  "devDependencies": {
+    "@swc/core": "^1.2.181",
+    "@swc/jest": "^0.2.21",
+    "@types/jest": "^27.5.0",
+    "@types/module-alias": "^2.0.1",
+    "@types/node": "^17.0.13",
+    "@typescript-eslint/eslint-plugin": "^5.6.0",
+    "@typescript-eslint/parser": "^5.6.0",
+    "eslint": "^8.4.1",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-import-resolver-typescript": "^2.5.0",
+    "eslint-plugin-import": "2.25.2",
+    "eslint-plugin-prettier": "^4.0.0",
+    "husky": "^8.0.1",
+    "jest": "^28.1.0",
+    "lint-staged": "^12.4.1",
+    "prettier": "^2.5.1",
+    "ts-jest": "^28.0.2",
+    "ts-node-dev": "^1.1.8",
+    "typescript": "^4.5.3"
+  },
+  "dependencies": {
+    "module-alias": "^2.2.2",
+    "rimraf": "^3.0.2"
+  }
+}
