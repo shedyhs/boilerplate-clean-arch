@@ -7,17 +7,24 @@
   "license": "MIT",
   "scripts": {
     "build": "rimraf dist && tsc -p tsconfig.build.json",
-    "start": "NODE_ENV=production node dist/index.js",
-    "dev": "ts-node-dev --respawn --ignore-watch node_modules --transpile-only src/index.ts",
+    "start": "NODE_ENV=production node dist/main/start.js",
+    "dev": "ts-node-dev --respawn --ignore-watch node_modules --transpile-only src/main/start.ts",
     "test": "jest --no-cache --runInBand --detectOpenHandles --coverage",
     "prepare": "husky install"
   },
   "devDependencies": {
     "@swc/core": "^1.2.181",
     "@swc/jest": "^0.2.21",
+    "@types/bcryptjs": "^2.4.2",
+    "@types/express": "^4.17.13",
     "@types/jest": "^27.5.0",
+    "@types/jsonwebtoken": "^8.5.8",
+    "@types/mime": "^2.0.3",
     "@types/module-alias": "^2.0.1",
+    "@types/multer": "^1.4.7",
     "@types/node": "^17.0.13",
+    "@types/nodemailer": "^6.4.4",
+    "@types/validator": "^13.7.4",
     "@typescript-eslint/eslint-plugin": "^5.6.0",
     "@typescript-eslint/parser": "^5.6.0",
     "eslint": "^8.4.1",
@@ -35,7 +42,20 @@
     "typescript": "^4.5.3"
   },
   "dependencies": {
+    "awilix": "^7.0.3",
+    "aws-sdk": "^2.1175.0",
+    "bcryptjs": "^2.4.3",
+    "chalk": "^5.0.1",
+    "dotenv": "^16.0.1",
+    "express": "^4.18.1",
+    "express-rate-limit": "^6.4.0",
+    "helmet": "^5.1.0",
+    "jsonwebtoken": "^8.5.1",
+    "mime": "^3.0.0",
     "module-alias": "^2.2.2",
-    "rimraf": "^3.0.2"
+    "multer": "^1.4.5-lts.1",
+    "nodemailer": "^6.7.7",
+    "rimraf": "^3.0.2",
+    "validator": "^13.7.0"
   }
 }
