@@ -593,6 +593,23 @@
     "@nodelib/fs.scandir" "2.1.5"
     fastq "^1.6.0"
 
+"@prisma/client@^4.0.0":
+  version "4.0.0"
+  resolved "https://registry.yarnpkg.com/@prisma/client/-/client-4.0.0.tgz#ed2f46930a1da0d8ae88d7965485973576b04270"
+  integrity sha512-g1h2OGoRo7anBVQ9Cw3gsbjwPtvf7i0pkGxKeZICtwkvE5CZXW+xZF4FZdmrViYkKaAShbISL0teNpu9ecpf4g==
+  dependencies:
+    "@prisma/engines-version" "3.16.0-49.da41d2bb3406da22087b849f0e911199ba4fbf11"
+
+"@prisma/engines-version@3.16.0-49.da41d2bb3406da22087b849f0e911199ba4fbf11":
+  version "3.16.0-49.da41d2bb3406da22087b849f0e911199ba4fbf11"
+  resolved "https://registry.yarnpkg.com/@prisma/engines-version/-/engines-version-3.16.0-49.da41d2bb3406da22087b849f0e911199ba4fbf11.tgz#4b5efe5eee2feef12910e4627a572cd96ed83236"
+  integrity sha512-PiZhdD624SrYEjyLboI0X7OugNbxUzDJx9v/6ldTKuqNDVUCmRH/Z00XwDi/dgM4FlqOSO+YiUsSiSKjxxG8cw==
+
+"@prisma/engines@3.16.0-49.da41d2bb3406da22087b849f0e911199ba4fbf11":
+  version "3.16.0-49.da41d2bb3406da22087b849f0e911199ba4fbf11"
+  resolved "https://registry.yarnpkg.com/@prisma/engines/-/engines-3.16.0-49.da41d2bb3406da22087b849f0e911199ba4fbf11.tgz#82f0018153cffa05d61422f9c0c7b0479b180f75"
+  integrity sha512-u/rG4lDHALolWBLr3yebZ+N2qImp3SDMcu7bHNJuRDaYvYEXy/MqfNRNEgd9GoPsXL3gofYf0VzJf2AmCG3YVw==
+
 "@sinclair/typebox@^0.23.3":
   version "0.23.5"
   resolved "https://registry.yarnpkg.com/@sinclair/typebox/-/typebox-0.23.5.tgz#93f7b9f4e3285a7a9ade7557d9a8d36809cbc47d"
@@ -2944,6 +2961,13 @@ jest-message-util@^28.1.0:
     slash "^3.0.0"
     stack-utils "^2.0.3"
 
+jest-mock-extended@^2.0.7:
+  version "2.0.7"
+  resolved "https://registry.yarnpkg.com/jest-mock-extended/-/jest-mock-extended-2.0.7.tgz#73ad87d8a744949bc3415d840f03468229f73f2a"
+  integrity sha512-h8brJJN5BZb03hTwplvt+raT6Nj0U2U71Z26Py12Qc3kvYnAjDW/zSuQJLnXCNyyufy592VC9k3X7AOz+2H52g==
+  dependencies:
+    ts-essentials "^7.0.3"
+
 jest-mock@^28.1.0:
   version "28.1.0"
   resolved "https://registry.yarnpkg.com/jest-mock/-/jest-mock-28.1.0.tgz#ccc7cc12a9b330b3182db0c651edc90d163ff73e"
@@ -3808,6 +3832,13 @@ pretty-format@^28.1.0:
     ansi-styles "^5.0.0"
     react-is "^18.0.0"
 
+prisma@^4.0.0:
+  version "4.0.0"
+  resolved "https://registry.yarnpkg.com/prisma/-/prisma-4.0.0.tgz#4ddb8fcd4f64d33aff8c198a6986dcce66dc8152"
+  integrity sha512-Dtsar03XpCBkcEb2ooGWO/WcgblDTLzGhPcustbehwlFXuTMliMDRzXsfygsgYwQoZnAUKRd1rhpvBNEUziOVw==
+  dependencies:
+    "@prisma/engines" "3.16.0-49.da41d2bb3406da22087b849f0e911199ba4fbf11"
+
 process-nextick-args@~2.0.0:
   version "2.0.1"
   resolved "https://registry.yarnpkg.com/process-nextick-args/-/process-nextick-args-2.0.1.tgz#7820d9b16120cc55ca9ae7792680ae7dba6d7fe2"
@@ -4392,6 +4423,11 @@ tree-kill@^1.2.2:
   version "1.2.2"
   resolved "https://registry.yarnpkg.com/tree-kill/-/tree-kill-1.2.2.tgz#4ca09a9092c88b73a7cdc5e8a01b507b0790a0cc"
   integrity sha512-L0Orpi8qGpRG//Nd+H90vFB+3iHnue1zSSGmNOOCh1GLJ7rUKVwV2HvijphGQS2UmhUZewS9VgvxYIdgr+fG1A==
+
+ts-essentials@^7.0.3:
+  version "7.0.3"
+  resolved "https://registry.yarnpkg.com/ts-essentials/-/ts-essentials-7.0.3.tgz#686fd155a02133eedcc5362dc8b5056cde3e5a38"
+  integrity sha512-8+gr5+lqO3G84KdiTSMRLtuyJ+nTBVRKuCrK4lidMPdVeEp0uqC875uE5NMcaA7YYMN7XsNiFQuMvasF8HT/xQ==
 
 ts-jest@^28.0.2:
   version "28.0.2"
