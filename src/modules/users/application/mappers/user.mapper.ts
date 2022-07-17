@@ -19,6 +19,8 @@ export class UserMapper {
       email: user.email,
       phone: user.phone,
       password: user.password.value,
+      createdAt: user.createdAt,
+      updatedAt: user.updatedAt,
     };
   }
 

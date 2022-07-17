@@ -9,18 +9,24 @@ type UserProps = {
   email: string;
   phone: string;
   password: Password;
+  createdAt?: Date;
+  updatedAt?: Date;
 };
 
 export class User extends Entity {
   private _email: Email;
   private _phone: Phone;
   private _password: Password;
+  private _createdAt: Date;
+  private _updatedAt: Date;
 
   constructor(props: UserProps) {
     super(props.id);
     this._email = new Email(props.email);
     this._phone = new Phone(props.phone);
     this._password = props.password;
+    this._createdAt = props.createdAt ?? new Date();
+    this._updatedAt = props.updatedAt ?? new Date();
   }
 
   updateEmail(oldPassword: string, newEmail: string): void {
@@ -67,5 +73,13 @@ export class User extends Entity {
 
   set password(value: Password) {
     this._password = value;
+  }
+
+  get createdAt(): Date {
+    return this._createdAt;
+  }
+
+  get updatedAt(): Date {
+    return this._updatedAt;
   }
 }
