@@ -1,7 +1,7 @@
 import chalk from 'chalk';
-import { ILoggerGateway } from './logger-gateway-interface';
+import { ILoggerProvider } from './logger.provider.interface';
 
-export class LoggerGateway implements ILoggerGateway {
+export class LoggerProvider implements ILoggerProvider {
   private dateAndPid = `${chalk.gray(
     chalk.bold(new Date().toLocaleString()),
   )} (${chalk.dim(process.pid)})`;

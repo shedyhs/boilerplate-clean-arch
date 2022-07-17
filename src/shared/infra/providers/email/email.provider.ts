@@ -1,7 +1,7 @@
 import nodemailer from 'nodemailer';
-import { IEmailGateway } from '@/shared/infra/gateways/email-gateway/email-gateway-interface';
+import { IEmailProvider } from './email.provider.interface';
 
-export class EmailGateway implements IEmailGateway {
+export class EmailProvider implements IEmailProvider {
   private client;
 
   constructor() {

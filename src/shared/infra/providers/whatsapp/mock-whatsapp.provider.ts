@@ -1,7 +1,8 @@
 /* eslint-disable no-console */
-import { IWhatsappGateway } from './whatsapp-gateway-interface';
 
-export class LocalWhatsappGateway implements IWhatsappGateway {
+import { IWhatsappProvider } from './whatsapp.provider.interface';
+
+export class MockWhatsappProvider implements IWhatsappProvider {
   public async sendMessage(
     phone: string,
     message: string,

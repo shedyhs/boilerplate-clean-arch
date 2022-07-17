@@ -1,7 +1,7 @@
 /* eslint-disable no-console */
-import { IEmailGateway } from '@/shared/infra/gateways/email-gateway/email-gateway-interface';
+import { IEmailProvider } from '@/shared/infra/providers/email/email.provider.interface';
 
-export class LocalEmailGateway implements IEmailGateway {
+export class MockEmailProvider implements IEmailProvider {
   async sendEmailVerificationCode(input: {
     email: string;
     verificationCode: string;

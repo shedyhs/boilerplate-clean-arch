@@ -1,12 +1,12 @@
 import { HttpRequest, HttpResponse } from '@/shared/interfaces/http';
-import { ILoggerGateway } from '../../infra/gateways/logger-gateway/logger-gateway-interface';
 import { IMiddleware } from './middleware-interface';
+import { ILoggerProvider } from '@/shared/infra/providers/logger/logger.provider.interface';
 
 export class LoggerMiddleware implements IMiddleware {
-  constructor(private readonly loggerGateway: ILoggerGateway) {}
+  constructor(private readonly loggerProvider: ILoggerProvider) {}
 
   async handle(httpRequest: HttpRequest): Promise<HttpResponse> {
-    this.loggerGateway.info(`${httpRequest.method} ${httpRequest.url}
+    this.loggerProvider.info(`${httpRequest.method} ${httpRequest.url}
       Body: ${JSON.stringify(httpRequest.body)}
       Query: ${JSON.stringify(httpRequest.query)}
       Params: ${JSON.stringify(httpRequest.params)}

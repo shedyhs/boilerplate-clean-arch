@@ -2,10 +2,10 @@ import { S3 } from 'aws-sdk';
 import fs from 'fs/promises';
 import path from 'path';
 import mime from 'mime/lite';
-import { IFileGateway } from '@/shared/infra/gateways/file-gateway/file-gateway-interface';
+import { IFileProvider } from './file.provider.interface';
 import { DomainError } from '@/shared/domain/domain-error';
 
-export class S3FileGateway implements IFileGateway {
+export class S3FileProvider implements IFileProvider {
   private client: S3;
 
   constructor() {

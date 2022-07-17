@@ -1,46 +1,46 @@
 import * as awilix from 'awilix';
-import { IFileGateway } from '@/shared/infra/gateways/file-gateway/file-gateway-interface';
-import { IHashGateway } from '@/shared/infra/gateways/hash-gateway/hash-gateway-interface';
-import { IIdGeneratorGateway } from '@/shared/infra/gateways/id-generator-gateway/id-generator-gateway-interface';
-import { IJwtGateway } from '@/shared/infra/gateways/jwt-gateway/jwt-gateway.interface';
-import { HashGateway } from '@/shared/infra/gateways/hash-gateway/hash-gateway';
-import { IdGeneratorGateway } from '@/shared/infra/gateways/id-generator-gateway/id-generator-gateway';
-import { JwtGateway } from '@/shared/infra/gateways/jwt-gateway/jwt-gateway';
-import { S3FileGateway } from '@/shared/infra/gateways/file-gateway/s3-file-gateway';
-import { ILoggerGateway } from '@/shared/infra/gateways/logger-gateway/logger-gateway-interface';
-import { LoggerGateway } from '@/shared/infra/gateways/logger-gateway/logger-gateway';
-import { DiskFileGateway } from '@/shared/infra/gateways/file-gateway/disk-file-gateway';
-import { IEmailGateway } from '@/shared/infra/gateways/email-gateway/email-gateway-interface';
-import { EmailGateway } from '@/shared/infra/gateways/email-gateway/email-gateway';
-import { LocalEmailGateway } from '@/shared/infra/gateways/email-gateway/local-email-gateway';
+import { EmailProvider } from '@/shared/infra/providers/email/email.provider';
+import { IEmailProvider } from '@/shared/infra/providers/email/email.provider.interface';
+import { MockEmailProvider } from '@/shared/infra/providers/email/mock-email.provider';
+import { DiskFileProvider } from '@/shared/infra/providers/file/disk-file.provider';
+import { IFileProvider } from '@/shared/infra/providers/file/file.provider.interface';
+import { S3FileProvider } from '@/shared/infra/providers/file/s3-file.provider';
+import { HashProvider } from '@/shared/infra/providers/hash/hash.provider';
+import { IHashProvider } from '@/shared/infra/providers/hash/hash.provider.interface';
+import { IdGeneratorProvider } from '@/shared/infra/providers/id-generator/id-generator.provider';
+import { IIdGeneratorProvider } from '@/shared/infra/providers/id-generator/id-generator.provider.interface';
+import { JwtProvider } from '@/shared/infra/providers/jwt/jwt.provider';
+import { IJwtProvider } from '@/shared/infra/providers/jwt/jwt.provider.interface';
+import { LoggerProvider } from '@/shared/infra/providers/logger/logger.provider';
+import { ILoggerProvider } from '@/shared/infra/providers/logger/logger.provider.interface';
 
 export type ThirdPartiesCradle = {
-  idGeneratorGateway: IIdGeneratorGateway;
-  jwtGateway: IJwtGateway;
-  hashGateway: IHashGateway;
-  fileGateway: IFileGateway;
-  loggerGateway: ILoggerGateway;
-  emailGateway: IEmailGateway;
+  idGeneratorProvider: IIdGeneratorProvider;
+  jwtProvider: IJwtProvider;
+  hashProvider: IHashProvider;
+  fileProvider: IFileProvider;
+  loggerProvider: ILoggerProvider;
+  emailProvider: IEmailProvider;
 };
 
 export const thirdPartiesContainer = {
-  idGeneratorGateway: awilix.asClass(IdGeneratorGateway).singleton(),
-  jwtGateway: awilix.asClass(JwtGateway).singleton(),
-  hashGateway: awilix.asClass(HashGateway).singleton(),
+  idGeneratorProvider: awilix.asClass(IdGeneratorProvider).singleton(),
+  jwtProvider: awilix.asClass(JwtProvider).singleton(),
+  hashProvider: awilix.asClass(HashProvider).singleton(),
   ...(process.env.NODE_ENV === 'production' ||
   process.env.NODE_ENV === 'homolog'
     ? {
-        emailGateway: awilix.asClass(EmailGateway).singleton(),
+        emailProvider: awilix.asClass(EmailProvider).singleton(),
       }
     : {
-        emailGateway: awilix.asClass(LocalEmailGateway).singleton(),
+        emailProvider: awilix.asClass(MockEmailProvider).singleton(),
       }),
-  loggerGateway: awilix.asClass(LoggerGateway).singleton(),
+  loggerProvider: awilix.asClass(LoggerProvider).singleton(),
   ...(process.env.NODE_ENV === 'production'
     ? {
-        fileGateway: awilix.asClass(S3FileGateway).singleton(),
+        fileProvider: awilix.asClass(S3FileProvider).singleton(),
       }
     : {
-        fileGateway: awilix.asClass(DiskFileGateway).singleton(),
+        fileProvider: awilix.asClass(DiskFileProvider).singleton(),
       }),
 };

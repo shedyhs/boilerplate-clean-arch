@@ -1,8 +1,8 @@
 import bcrypt from 'bcryptjs';
 import crypto from 'crypto';
-import { IHashGateway } from '@/shared/infra/gateways/hash-gateway/hash-gateway-interface';
+import { IHashProvider } from './hash.provider.interface';
 
-export class HashGateway implements IHashGateway {
+export class HashProvider implements IHashProvider {
   async compare(value: string, hash: string): Promise<boolean> {
     return bcrypt.compare(value, hash);
   }

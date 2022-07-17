@@ -3,15 +3,15 @@ import { ApplicationErrors } from '@/shared/application/application-error';
 import { DomainError } from '@/shared/domain/domain-error';
 import { HttpRequest, HttpResponse } from '@/shared/interfaces/http';
 import { IValidator } from './validations/validator-interface';
-import { ILoggerGateway } from '../infra/gateways/logger-gateway/logger-gateway-interface';
 import { container } from '@/main/di/container';
 import { ServerErrors } from './server-error';
+import { ILoggerProvider } from '../infra/providers/logger/logger.provider.interface';
 
 export abstract class BaseController {
-  private loggerGateway: ILoggerGateway;
+  private loggerProvider: ILoggerProvider;
 
   constructor() {
-    this.loggerGateway = container.resolve('loggerGateway');
+    this.loggerProvider = container.resolve('loggerProvider');
   }
 
   abstract perform(request: HttpRequest): Promise<HttpResponse>;
@@ -93,11 +93,11 @@ export abstract class BaseController {
 
         case ServerErrors.NotImplemented:
           return { data: { error: 'Internal Server Error' }, statusCode: 501 };
-        case ServerErrors.BadGateway:
+        case ServerErrors.BadProvider:
           return { data: { error: 'Internal Server Error' }, statusCode: 502 };
         case ServerErrors.ServiceUnavailable:
           return { data: { error: 'Internal Server Error' }, statusCode: 503 };
-        case ServerErrors.GatewayTimeout:
+        case ServerErrors.ProviderTimeout:
           return { data: { error: 'Internal Server Error' }, statusCode: 504 };
         case ServerErrors.HTTPVersionNotSupported:
           return { data: { error: 'Internal Server Error' }, statusCode: 505 };
@@ -114,7 +114,7 @@ export abstract class BaseController {
         case ServerErrors.NetworkConnectionTimeoutError:
           return { data: { error: 'Internal Server Error' }, statusCode: 599 };
         default:
-          this.loggerGateway.error(err.message);
+          this.loggerProvider.error(err.message);
           return { data: { error: 'Internal Server Error' }, statusCode: 500 };
       }
     }

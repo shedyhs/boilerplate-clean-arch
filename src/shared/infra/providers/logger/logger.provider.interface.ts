@@ -1,4 +1,4 @@
-export interface ILoggerGateway {
+export interface ILoggerProvider {
   error(message: string): void;
   warn(message: string): void;
   info(message: string): void;

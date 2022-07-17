@@ -10,7 +10,7 @@ export type DecodeOutput = {
   jti?: string | undefined;
 };
 
-export interface IJwtGateway {
+export interface IJwtProvider {
   generate(payload: { payload: any; options: any }): Promise<string>;
   decode(token: string): Promise<DecodeOutput>;
   verify(token: string): Promise<DecodeOutput>;

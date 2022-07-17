@@ -1,12 +1,12 @@
-import { IJwtGateway } from '@/shared/infra/gateways/jwt-gateway/jwt-gateway.interface';
+import { IJwtProvider } from '@/shared/infra/providers/jwt/jwt.provider.interface';
+import { ILoggerProvider } from '@/shared/infra/providers/logger/logger.provider.interface';
 import { HttpRequest, HttpResponse } from '@/shared/interfaces/http';
-import { ILoggerGateway } from '../../infra/gateways/logger-gateway/logger-gateway-interface';
 import { IMiddleware } from './middleware-interface';
 
 export class AuthenticatedMiddleware implements IMiddleware {
   constructor(
-    private readonly jwtGateway: IJwtGateway,
-    private readonly loggerGateway: ILoggerGateway,
+    private readonly jwtProvider: IJwtProvider,
+    private readonly loggerProvider: ILoggerProvider,
   ) {}
 
   async handle(httpRequest: HttpRequest): Promise<HttpResponse> {
@@ -16,7 +16,7 @@ export class AuthenticatedMiddleware implements IMiddleware {
     }
     const [, token] = authorization.split(' ');
     try {
-      const { sub, emailIsVerified } = await this.jwtGateway.verify(token);
+      const { sub, emailIsVerified } = await this.jwtProvider.verify(token);
       if (!sub) {
         return { data: 'JWToken is invalid', statusCode: 401 };
       }
@@ -25,7 +25,7 @@ export class AuthenticatedMiddleware implements IMiddleware {
         statusCode: 200,
       };
     } catch (error) {
-      this.loggerGateway.error(String(error));
+      this.loggerProvider.error(String(error));
       return { data: 'JWToken is invalid', statusCode: 401 };
     }
   }

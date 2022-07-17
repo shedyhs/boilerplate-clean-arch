@@ -2,7 +2,7 @@ import multer from 'multer';
 import crypto from 'crypto';
 import { container } from '../di/container';
 
-const loggerGateway = container.resolve('loggerGateway');
+const loggerProvider = container.resolve('loggerProvider');
 
 const upload = multer({
   storage: multer.diskStorage({
@@ -14,7 +14,7 @@ const upload = multer({
     },
   }),
   fileFilter: (req, file, cb) => {
-    loggerGateway.info(`upload file filter. File: ${JSON.stringify(file)}`);
+    loggerProvider.info(`upload file filter. File: ${JSON.stringify(file)}`);
     const allowedFormats = [
       'image/jpeg',
       'image/pjpeg',

@@ -13,10 +13,10 @@ export namespace ServerErrors {
     }
   }
 
-  export class BadGateway extends Error {
+  export class BadProvider extends Error {
     constructor(message?: string) {
       super(message);
-      this.name = 'BadGateway';
+      this.name = 'BadProvider';
     }
   }
 
@@ -26,10 +26,10 @@ export namespace ServerErrors {
       this.name = 'ServiceUnavailable';
     }
   }
-  export class GatewayTimeout extends Error {
+  export class ProviderTimeout extends Error {
     constructor(message?: string) {
       super(message);
-      this.name = 'GatewayTimeout';
+      this.name = 'ProviderTimeout';
     }
   }
   export class HTTPVersionNotSupported extends Error {

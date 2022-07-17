@@ -1,13 +1,13 @@
 import fs from 'fs/promises';
 import path from 'path';
-import { ILoggerGateway } from '@/shared/infra/gateways/logger-gateway/logger-gateway-interface';
-import { IFileGateway } from '@/shared/infra/gateways/file-gateway/file-gateway-interface';
+import { ILoggerProvider } from '../logger/logger.provider.interface';
+import { IFileProvider } from './file.provider.interface';
 
-export class DiskFileGateway implements IFileGateway {
-  constructor(private readonly loggerGateway: ILoggerGateway) {}
+export class DiskFileProvider implements IFileProvider {
+  constructor(private readonly loggerProvider: ILoggerProvider) {}
 
   async save(fileName: string): Promise<void> {
-    this.loggerGateway.debug(`Saved file: ${fileName}`);
+    this.loggerProvider.debug(`Saved file: ${fileName}`);
   }
 
   async delete(fileName: string): Promise<void> {

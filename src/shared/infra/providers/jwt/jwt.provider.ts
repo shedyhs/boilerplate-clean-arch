@@ -1,10 +1,10 @@
 import jwt from 'jsonwebtoken';
 import {
   DecodeOutput,
-  IJwtGateway,
-} from '@/shared/infra/gateways/jwt-gateway/jwt-gateway.interface';
+  IJwtProvider,
+} from '@/shared/infra/providers/jwt/jwt.provider.interface';
 
-export class JwtGateway implements IJwtGateway {
+export class JwtProvider implements IJwtProvider {
   async generate({
     payload,
     options,
