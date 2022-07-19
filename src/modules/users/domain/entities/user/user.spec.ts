@@ -37,13 +37,25 @@ describe('User', () => {
   });
 
   it('Should be able to update phone with updatePhone()', () => {
-    user.updatePhone(userMockData.password, '+55 (65) 984359506');
-    expect(user.phone).toBe('+55 (65) 984359506');
+    user.updatePhone(userMockData.password, {
+      ddi: '55',
+      ddd: '11',
+      number: '988888888',
+    });
+    expect(user.phone).toStrictEqual({
+      ddi: '55',
+      ddd: '11',
+      number: '988888888',
+    });
   });
 
   it('Should not be able to update phone with invalid password', () => {
     expect(() =>
-      user.updatePhone('invalid-password', '+55 (65) 984359506'),
+      user.updatePhone('invalid-password', {
+        ddi: '55',
+        ddd: '11',
+        number: '988888888',
+      }),
     ).toThrow(DomainError);
   });
 

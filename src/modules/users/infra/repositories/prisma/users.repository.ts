@@ -1,9 +1,9 @@
 import prismaClient from '@/shared/infra/database/prisma-client';
 import { UserMapper } from '@/modules/users/application/mappers/user.mapper';
-import { User } from '@/modules/users/domain/entities/user/user';
-import { IPaginatedRequest } from '@/shared/interfaces/paginated-request.interface';
-import { IPaginatedResponse } from '@/shared/interfaces/paginated-response.interface';
 import { IUsersRepository } from '../interfaces/users-repository.interface';
+import { User } from '@/modules/users/domain/entities/user/user';
+import { IShowAllUsersDTO } from '@/modules/users/application/usecases/dtos/show-all-users-dto';
+import { IPhone } from '@/modules/users/domain/entities/user/value-objects/phone';
 
 export class PgUsersRepository implements IUsersRepository {
   async create(user: User): Promise<void> {
@@ -23,20 +23,35 @@ export class PgUsersRepository implements IUsersRepository {
   async findAll({
     page = 1,
     limit = 10,
-  }: IPaginatedRequest): Promise<IPaginatedResponse<User>> {
+    ddi,
+    ddd,
+    createdAfter,
+    createdBefore,
+    updatedAfter,
+    updatedBefore,
+  }: IShowAllUsersDTO): Promise<User[]> {
     const foundUsers = await prismaClient.user.findMany({
       take: Number(limit),
       skip: (Number(page) - 1) * Number(limit),
+      where: {
+        createdAt: {
+          gte: createdAfter,
+          lte: createdBefore,
+        },
+        updatedAt: {
+          gte: updatedAfter,
+          lte: updatedBefore,
+        },
+        ddi: {
+          equals: ddi,
+        },
+        ddd: {
+          equals: ddd,
+        },
+      },
     });
-    const total = await prismaClient.user.count();
-    return {
-      limit,
-      page,
-      total,
-      results: foundUsers.map((foundUser) =>
-        UserMapper.toApplication(foundUser),
-      ),
-    };
+
+    return foundUsers.map((foundUser) => UserMapper.toApplication(foundUser));
   }
 
   async findByEmail(email: string): Promise<User | undefined> {
@@ -47,8 +62,10 @@ export class PgUsersRepository implements IUsersRepository {
     return UserMapper.toApplication(foundUser);
   }
 
-  async findByPhone(phone: string): Promise<User | undefined> {
-    const foundUser = await prismaClient.user.findUnique({ where: { phone } });
+  async findByPhone(phone: IPhone): Promise<User | undefined> {
+    const foundUser = await prismaClient.user.findFirst({
+      where: { ddi: phone.ddi, ddd: phone.ddd, number: phone.number },
+    });
     if (!foundUser) {
       return undefined;
     }

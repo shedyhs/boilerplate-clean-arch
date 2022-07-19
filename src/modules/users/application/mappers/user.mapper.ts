@@ -9,7 +9,7 @@ export class UserMapper {
     return {
       id: user.id,
       email: user.email,
-      phone: user.phone,
+      phone: `+${user.phone.ddi} (${user.phone.ddd}) ${user.phone.number}`,
     };
   }
 
@@ -17,7 +17,9 @@ export class UserMapper {
     return {
       id: user.id,
       email: user.email,
-      phone: user.phone,
+      ddi: user.phone.ddi,
+      ddd: user.phone.ddd,
+      number: user.phone.number,
       password: user.password.value,
       createdAt: user.createdAt,
       updatedAt: user.updatedAt,
@@ -35,6 +37,11 @@ export class UserMapper {
     return new EntityUser({
       ...user,
       id: user.id,
+      phone: {
+        ddi: user.ddi,
+        ddd: user.ddd,
+        number: user.number,
+      },
       password: new Password(user.password, true),
     });
   }

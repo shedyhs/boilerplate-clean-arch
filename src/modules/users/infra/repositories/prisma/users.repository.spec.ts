@@ -49,13 +49,13 @@ describe('UsersRepository', () => {
   });
 
   it('Should be able to find user with findByPhone', async () => {
-    prismaMock.user.findUnique.mockResolvedValue(userRepository);
+    prismaMock.user.findFirst.mockResolvedValue(userRepository);
     const foundUser = await sut.findByPhone(userEntity.phone);
     expect(foundUser).toEqual(userEntity);
   });
 
   it('Should not be able to find user with findByPhone', async () => {
-    prismaMock.user.findUnique.mockResolvedValue(null);
+    prismaMock.user.findFirst.mockResolvedValue(null);
     const foundUser = await sut.findByPhone(userEntity.phone);
     expect(foundUser).toBeUndefined();
   });
@@ -64,16 +64,16 @@ describe('UsersRepository', () => {
     prismaMock.user.findMany.mockResolvedValue([userRepository]);
     const foundUsers = await sut.findAll({});
     expect(prismaMock.user.findMany).toHaveBeenCalled();
-    expect(foundUsers.results).toEqual([userEntity]);
-    expect(foundUsers.results).toHaveLength(1);
+    expect(foundUsers).toEqual([userEntity]);
+    expect(foundUsers).toHaveLength(1);
   });
 
   it('Should be able to return empty array same if not have users created with findAll', async () => {
     prismaMock.user.findMany.mockResolvedValue([]);
     const foundUsers = await sut.findAll({});
     expect(prismaMock.user.findMany).toHaveBeenCalled();
-    expect(foundUsers.results).toEqual([]);
-    expect(foundUsers.results).toHaveLength(0);
+    expect(foundUsers).toEqual([]);
+    expect(foundUsers).toHaveLength(0);
   });
 
   it('Should be able to update user with update', async () => {
