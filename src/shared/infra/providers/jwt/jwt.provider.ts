@@ -2,9 +2,13 @@ import jwt from 'jsonwebtoken';
 import {
   DecodeOutput,
   IJwtProvider,
+  OptionsInput,
 } from '@/shared/infra/providers/jwt/jwt.provider.interface';
 
 export class JwtProvider implements IJwtProvider {
+  private readonly JWT_EXPIRES_IN = process.env.JWT_EXPIRES_IN ?? '1d';
+  private readonly JWT_ISSUER = process.env.JWT_ISSUER ?? 'default-issuer';
+  private readonly JWT_SECRET = process.env.JWT_SECRET ?? 'default-secret';
   async generate({
     payload,
     options,
@@ -12,12 +16,12 @@ export class JwtProvider implements IJwtProvider {
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     payload: any;
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    options: any;
+    options: OptionsInput;
   }): Promise<string> {
-    return jwt.sign(payload, process.env.JWT_SECRET ?? 'pet-backend', {
+    return jwt.sign(payload, this.JWT_SECRET, {
       ...options,
-      expiresIn: process.env.JWT_EXPIRES_IN ?? '1d',
-      issuer: process.env.JWT_ISSUER ?? 'pet-backend',
+      expiresIn: this.JWT_EXPIRES_IN,
+      issuer: this.JWT_ISSUER,
     });
   }
 
