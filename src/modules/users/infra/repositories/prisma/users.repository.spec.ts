@@ -1,14 +1,14 @@
-import { User as UserRepository } from '@prisma/client';
 import { User as UserEntity } from '@/modules/users/domain/entities/user/user';
 import { prismaMock } from '@/shared/infra/database/mocks/prisma-mock';
 import { IUsersRepository } from '../interfaces/users-repository.interface';
 import { PgUsersRepository } from './users.repository';
 import { UserMapper } from '@/modules/users/application/mappers/user.mapper';
 import { userMockData } from '@/modules/users/domain/mocks/user.mock';
+import { UserModel } from '../models/user.model';
 
 describe('UsersRepository', () => {
   let userEntity: UserEntity;
-  let userRepository: UserRepository;
+  let userRepository: UserModel;
   let sut: IUsersRepository;
 
   beforeEach(() => {
