@@ -3,7 +3,7 @@ import { DomainError } from '@/shared/domain/domain-error';
 import { ValueObject } from '@/shared/domain/value-object';
 
 export class Password extends ValueObject<string> {
-  private salts = 13;
+  private salts = 8;
   private minPasswordLength = 8;
 
   constructor(password: string, hashed = false) {
