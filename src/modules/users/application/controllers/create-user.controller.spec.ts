@@ -1,3 +1,4 @@
+import { HttpStatusCode } from '@/shared/interfaces/http-status-codes';
 import { userMockData } from '../../domain/mocks/user.mock';
 import { ICreateUserUseCase } from '../usecases/interfaces/create-user-usecase.interface';
 import { StubCreateUserUseCase } from '../usecases/stubs/create-user.usecase.stub';
@@ -25,7 +26,7 @@ describe('Create User Controller', () => {
       url: {},
     });
     expect(spyUseCase).toHaveBeenCalledWith(userMockData);
-    expect(response.statusCode).toBe(201);
+    expect(response.statusCode).toBe(HttpStatusCode.Created);
     expect(response.data).toHaveProperty('id');
   });
 
@@ -40,7 +41,7 @@ describe('Create User Controller', () => {
       method: {},
       url: {},
     });
-    expect(response.statusCode).toBe(400);
+    expect(response.statusCode).toBe(HttpStatusCode.BadRequest);
     expect(response.data).toHaveProperty('errors');
   });
 });

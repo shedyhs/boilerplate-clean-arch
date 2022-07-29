@@ -1,5 +1,6 @@
 import { BaseController } from '@/shared/application/base-controller';
 import { HttpRequest, HttpResponse } from '@/shared/interfaces/http';
+import { HttpStatusCode } from '@/shared/interfaces/http-status-codes';
 import { IShowAllUsersUseCase } from '../usecases/interfaces/show-all-users-usecase.interface';
 
 export class ShowAllUsersController extends BaseController {
@@ -30,6 +31,6 @@ export class ShowAllUsersController extends BaseController {
       updatedBefore,
     });
 
-    return { data: response, statusCode: 200 };
+    return { data: response, statusCode: HttpStatusCode.Ok };
   }
 }

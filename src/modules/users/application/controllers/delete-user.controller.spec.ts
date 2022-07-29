@@ -1,3 +1,4 @@
+import { HttpStatusCode } from '@/shared/interfaces/http-status-codes';
 import { IDeleteUserUseCase } from '../usecases/interfaces/delete-user-usecase.interface';
 import { StubDeleteUserUseCase } from '../usecases/stubs/delete-user.usecase.stub';
 import { DeleteUserController } from './delete-user.controller';
@@ -24,7 +25,7 @@ describe('Delete User Controller', () => {
       url: {},
     });
     expect(spyUseCase).toHaveBeenCalled();
-    expect(response.statusCode).toBe(204);
+    expect(response.statusCode).toBe(HttpStatusCode.NoContent);
     expect(response.data).toBeUndefined();
   });
 
@@ -39,7 +40,7 @@ describe('Delete User Controller', () => {
       method: {},
       url: {},
     });
-    expect(response.statusCode).toBe(400);
+    expect(response.statusCode).toBe(HttpStatusCode.BadRequest);
     expect(response.data).toHaveProperty('errors');
   });
 });

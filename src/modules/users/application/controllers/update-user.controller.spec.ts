@@ -1,3 +1,4 @@
+import { HttpStatusCode } from '@/shared/interfaces/http-status-codes';
 import { userMockData } from '../../domain/mocks/user.mock';
 import { IUpdateUserUseCase } from '../usecases/interfaces/update-user-usecase.interface';
 import { StubUpdateUserUseCase } from '../usecases/stubs/update-user.usecase.stub';
@@ -28,7 +29,7 @@ describe('Update User Controller', () => {
       id: 'fake-user-id',
       ...userMockData,
     });
-    expect(response.statusCode).toBe(200);
+    expect(response.statusCode).toBe(HttpStatusCode.Ok);
     expect(response.data).toHaveProperty('id');
   });
 
@@ -43,7 +44,7 @@ describe('Update User Controller', () => {
       method: {},
       url: {},
     });
-    expect(response.statusCode).toBe(400);
+    expect(response.statusCode).toBe(HttpStatusCode.BadRequest);
     expect(response.data).toHaveProperty('errors');
   });
 });

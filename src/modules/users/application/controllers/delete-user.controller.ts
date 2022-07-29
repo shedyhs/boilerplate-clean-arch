@@ -2,6 +2,7 @@ import { BaseController } from '@/shared/application/base-controller';
 import { RequiredFieldValidator } from '@/shared/application/validations/required-field-validator';
 import { IValidator } from '@/shared/application/validations/validator-interface';
 import { HttpRequest, HttpResponse } from '@/shared/interfaces/http';
+import { HttpStatusCode } from '@/shared/interfaces/http-status-codes';
 import { IDeleteUserUseCase } from '../usecases/interfaces/delete-user-usecase.interface';
 
 export class DeleteUserController extends BaseController {
@@ -14,7 +15,7 @@ export class DeleteUserController extends BaseController {
 
     await this.deleteUserUseCase.execute({ id });
 
-    return { data: undefined, statusCode: 204 };
+    return { data: undefined, statusCode: HttpStatusCode.NoContent };
   }
 
   buildValidators(request: HttpRequest): IValidator[] {

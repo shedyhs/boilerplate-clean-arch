@@ -1,3 +1,4 @@
+import { HttpStatusCode } from '@/shared/interfaces/http-status-codes';
 import { IShowUserUseCase } from '../usecases/interfaces/show-user-usecase.interface';
 import { StubShowUserUseCase } from '../usecases/stubs/show-user.usecase.stub';
 import { ShowUserController } from './show-user.controller';
@@ -24,7 +25,7 @@ describe('Show User Controller', () => {
       url: {},
     });
     expect(spyUseCase).toHaveBeenCalled();
-    expect(response.statusCode).toBe(200);
+    expect(response.statusCode).toBe(HttpStatusCode.Ok);
     expect(response.data).toHaveProperty('id');
   });
 
@@ -39,7 +40,7 @@ describe('Show User Controller', () => {
       method: {},
       url: {},
     });
-    expect(response.statusCode).toBe(400);
+    expect(response.statusCode).toBe(HttpStatusCode.BadRequest);
     expect(response.data).toHaveProperty('errors');
   });
 });

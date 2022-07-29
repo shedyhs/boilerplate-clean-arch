@@ -2,6 +2,7 @@ import { BaseController } from '@/shared/application/base-controller';
 import { RequiredFieldValidator } from '@/shared/application/validations/required-field-validator';
 import { IValidator } from '@/shared/application/validations/validator-interface';
 import { HttpRequest, HttpResponse } from '@/shared/interfaces/http';
+import { HttpStatusCode } from '@/shared/interfaces/http-status-codes';
 import { ICreateUserUseCase } from '../usecases/interfaces/create-user-usecase.interface';
 
 export class CreateUserController extends BaseController {
@@ -19,7 +20,7 @@ export class CreateUserController extends BaseController {
       password,
     });
 
-    return { data: response, statusCode: 201 };
+    return { data: response, statusCode: HttpStatusCode.Created };
   }
 
   buildValidators(request: HttpRequest): IValidator[] {
