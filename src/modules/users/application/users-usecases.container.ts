@@ -5,7 +5,7 @@ import { IDeleteUserUseCase } from './usecases/interfaces/delete-user-usecase.in
 import { IShowAllUsersUseCase } from './usecases/interfaces/show-all-users-usecase.interface';
 import { IShowUserUseCase } from './usecases/interfaces/show-user-usecase.interface';
 import { IUpdateUserUseCase } from './usecases/interfaces/update-user-usecase.interface';
-import { DeleteUserUseCase } from './usecases/remove-user.usecase';
+import { DeleteUserUseCase } from './usecases/delete-user.usecase';
 import { ShowAllUsersUseCase } from './usecases/show-all-users.usecase';
 import { ShowUserUseCase } from './usecases/show-user.usecase';
 import { UpdateUserUseCase } from './usecases/update-user.usecase';
