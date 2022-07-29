@@ -4,6 +4,10 @@ import { container } from './di/container';
 
 const loggerProvider = container.resolve('loggerProvider');
 
-app.listen(3334, () =>
-  loggerProvider.info('🔥🔥🔥 Server started at http://0.0.0.0:3334 🔥🔥🔥'),
+app.listen(process.env.PORT ?? 3334, () =>
+  loggerProvider.info(
+    `🔥🔥🔥 Server started at http://0.0.0.0:${
+      process.env.PORT ?? 3334
+    } 🔥🔥🔥`,
+  ),
 );
