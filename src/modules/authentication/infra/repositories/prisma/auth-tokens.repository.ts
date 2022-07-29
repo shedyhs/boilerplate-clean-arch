@@ -1,4 +1,3 @@
-import { unzipSync } from 'zlib';
 import prismaClient from '@/shared/infra/database/prisma-client';
 import { IAuthTokensRepository } from '../interfaces/auth-tokens-repository.interface';
 import { AuthTokenModel } from '../model/auth-token.model';

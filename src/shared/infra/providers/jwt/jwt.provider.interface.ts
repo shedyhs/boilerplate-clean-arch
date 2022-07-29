@@ -1,4 +1,3 @@
-import { any } from 'jest-mock-extended';
 import { JwtHeader, Algorithm } from 'jsonwebtoken';
 
 /* eslint-disable @typescript-eslint/no-explicit-any */
