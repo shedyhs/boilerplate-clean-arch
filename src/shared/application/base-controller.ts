@@ -3,17 +3,9 @@ import { ApplicationErrors } from '@/shared/application/application-error';
 import { DomainError } from '@/shared/domain/domain-error';
 import { HttpRequest, HttpResponse } from '@/shared/interfaces/http';
 import { IValidator } from './validations/validator-interface';
-import { container } from '@/main/di/container';
 import { ServerErrors } from './server-error';
-import { ILoggerProvider } from '../infra/providers/logger/logger.provider.interface';
 
 export abstract class BaseController {
-  private loggerProvider: ILoggerProvider;
-
-  constructor() {
-    this.loggerProvider = container.resolve('loggerProvider');
-  }
-
   abstract perform(request: HttpRequest): Promise<HttpResponse>;
 
   async handle(request: HttpRequest): Promise<HttpResponse> {
@@ -114,7 +106,8 @@ export abstract class BaseController {
         case ServerErrors.NetworkConnectionTimeoutError:
           return { data: { error: 'Internal Server Error' }, statusCode: 599 };
         default:
-          this.loggerProvider.error(err.message);
+          // eslint-disable-next-line no-console
+          console.error(err);
           return { data: { error: 'Internal Server Error' }, statusCode: 500 };
       }
     }
