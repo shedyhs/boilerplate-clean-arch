@@ -31,10 +31,7 @@ export class JwtProvider implements IJwtProvider {
   }
 
   async verify(token: string): Promise<DecodeOutput> {
-    const verifiedJwt = jwt.verify(
-      token,
-      process.env.JWT_SECRET ?? 'pet-backend',
-    ) as jwt.JwtPayload;
+    const verifiedJwt = jwt.verify(token, this.JWT_SECRET) as jwt.JwtPayload;
     return verifiedJwt;
   }
 }
